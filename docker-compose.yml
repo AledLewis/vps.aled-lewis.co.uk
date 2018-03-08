@@ -10,13 +10,13 @@ services:
           - ${LETS_ENCRYPT_DIR}:/etc/letsencrypt
           - ./site.conf:/etc/nginx/conf.d/site.conf
       links:
-          - php
+          - blog
           - yofloco
           - drone-server
-  php:
-      image: php:7-fpm
+  blog:
+      build: ./blog
       volumes:
-          - ./blog:/blog
+          - blog:/var/www/grav-admin
 
   yofloco:
       image: aledlewis/yofloco:latest
@@ -48,3 +48,5 @@ services:
                   - DRONE_SERVER=drone-server:9000
                   - DRONE_SECRET=${DRONE_SECRET}
 
+volumes:
+  blog:
