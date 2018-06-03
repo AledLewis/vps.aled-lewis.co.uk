@@ -6,9 +6,7 @@ services:
           - "80:80"
           - "443:443"
       volumes:
-          - ./blog:/blog
           - ${LETS_ENCRYPT_DIR}:/etc/letsencrypt
-          - ./site.conf:/etc/nginx/conf.d/site.conf
       links:
           - blog
           - yofloco
